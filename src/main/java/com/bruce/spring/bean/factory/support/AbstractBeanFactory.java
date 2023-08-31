@@ -10,17 +10,26 @@ import com.bruce.spring.bean.factory.config.BeanDefinition;
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
 
     @Override
+    public Object getBean(String name, Object... args) throws BeansException {
+        return doGetBean(name, args);
+    }
+
+    @Override
     public Object getBean(String name) throws BeansException {
+        return doGetBean(name, null);
+    }
+
+    protected <T> T doGetBean(String name, final Object[] args) {
         Object bean = getSingleton(name);
         if (bean != null) {
-            return bean;
+            return (T) bean;
         }
 
         BeanDefinition beanDefinition = getBeanDefinition(name);
-        return createBean(name, beanDefinition);
+        return (T) createBean(name, beanDefinition, args);
     }
 
     protected abstract BeanDefinition getBeanDefinition(String beanName) throws BeansException;
 
-    protected abstract Object createBean(String beanName, BeanDefinition beanDefinition) throws BeansException;
+    protected abstract Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException;
 }
