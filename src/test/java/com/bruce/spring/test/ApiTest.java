@@ -4,6 +4,8 @@ import com.bruce.spring.bean.factory.config.BeanDefinition;
 import com.bruce.spring.bean.BeanFactory;
 import com.bruce.spring.bean.factory.support.DefaultListableBeanFactory;
 import com.bruce.spring.test.bean.UserService;
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.NoOp;
 import org.junit.Test;
 
 public class ApiTest {
@@ -16,12 +18,21 @@ public class ApiTest {
         BeanDefinition beanDefinition = new BeanDefinition(UserService.class);
         beanFactory.registerBeanDefinition("userService", beanDefinition);
         // 3. 第一次 get bean
-        UserService userService = (UserService) beanFactory.getBean("userService");
+        UserService userService = (UserService) beanFactory.getBean("userService", "Bruce");
         userService.queryUserInfo();
-        // 4. 第二次 get bean , bean from Singleton
-        UserService userServiceSingleton = (UserService) beanFactory.getBean("userService");
-        userServiceSingleton.queryUserInfo();
+    }
 
-
+    @Test
+    public void test_cglib() {
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(UserService.class);
+        enhancer.setCallback(new NoOp() {
+            @Override
+            public int hashCode() {
+                return super.hashCode();
+            }
+        });
+        Object obj = enhancer.create(new Class[]{String.class}, new Object[]{"Bruce"});
+        System.out.println(obj);
     }
 }
