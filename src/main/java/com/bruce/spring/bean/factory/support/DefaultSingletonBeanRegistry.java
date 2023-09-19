@@ -5,6 +5,9 @@ import com.bruce.spring.bean.factory.config.SingletonBeanRegistry;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 内部存储了一个 Map， 用来存放对应的 name-bean 映射
+ */
 public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
     private final Map<String, Object> singletonObjects = new HashMap<>();

@@ -2,6 +2,9 @@ package com.bruce.spring.bean.factory.config;
 
 import com.bruce.spring.bean.PropertyValues;
 
+/**
+ * 存储类信息
+ */
 @SuppressWarnings({"rawtypes"})
 public class BeanDefinition {
 

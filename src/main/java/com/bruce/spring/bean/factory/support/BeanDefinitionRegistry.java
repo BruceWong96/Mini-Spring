@@ -7,7 +7,7 @@ import com.bruce.spring.bean.factory.config.BeanDefinition;
  */
 public interface BeanDefinitionRegistry {
     /**
-     * 向注册表中注册BeanDefinition
+     * 向注册表中注册 BeanDefinition
      */
     void registerBeanDefinition(String beanName, BeanDefinition beanDefinition);
 }

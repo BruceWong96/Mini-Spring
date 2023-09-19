@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * 创建出一个用于传递类中属性信息的类，因为属性可能会有很多，需要定义一个集合包装下
+ * 包含了一个类中所有的属性和值，用 List 存储
  *
  * @author Bruce Wong
  * @date 2023年08月31日 23:36
@@ -16,7 +16,7 @@ public class PropertyValues {
     public void addPropertyValue(PropertyValue pv){
         this.propertyValueList.add(pv);
     }
-    public PropertyValue[] getPropertyValueList() {
+    public PropertyValue[] getPropertyValues() {
         return this.propertyValueList.toArray(new PropertyValue[0]);
     }
 

@@ -2,6 +2,7 @@ package com.bruce.spring.bean;
 
 /**
  * bean 属性信息
+ * 单个属性和值
  *
  * @author Bruce Wong
  * @date 2023年08月31日 23:32
